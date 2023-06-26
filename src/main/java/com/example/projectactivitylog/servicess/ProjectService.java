@@ -21,8 +21,9 @@ public class ProjectService {
         ProjectDto projectDto = new ProjectDto();
         if (byId.isPresent()){
             projectDto.setId(byId.get().getId());
-            projectDto.setName(byId.get().getName());//dodelat
-
+            projectDto.setName(byId.get().getName());
+            projectDto.setDescription(byId.get().getDescription());
+            projectDto.setStatus(byId.get().getStatus());
             return projectDto;
         }
         return null;
@@ -31,10 +32,17 @@ public class ProjectService {
     public ProjectDto createNewProject(ProjectDto projectDto) {
         ProjectEntity projectEntity = new ProjectEntity();
         projectEntity.setName(projectDto.getName()); //dodelat
-
+        projectEntity.setDescription(projectDto.getDescription());
+        projectEntity.setStatus(projectEntity.getStatus());
         projectRepository.save(projectEntity);
         projectDto.setId(projectEntity.getId());
         return projectDto;
     }
 
+    public ProjectDto updateProject(int id) {
+        ProjectEntity projectEntity = new ProjectEntity();
+        //dodelat
+
+        return null;
+    }
 }

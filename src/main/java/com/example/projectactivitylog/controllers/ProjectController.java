@@ -38,8 +38,8 @@ public class ProjectController {
     }
 
     @PostMapping("/project/update/{id}")
-    public String updateProject(@PathVariable int id) {
-        return "project";
+    public ProjectDto updateProject(@PathVariable int id) {
+        return projectService.updateProject(id);
     }
 
     @GetMapping("/")
