@@ -1,5 +1,6 @@
 package com.example.projectactivitylog.controllers;
 
+import com.example.projectactivitylog.dto.PersonDto;
 import com.example.projectactivitylog.dto.ProjectDto;
 import com.example.projectactivitylog.entities.ProjectEntity;
 import com.example.projectactivitylog.servicess.ProjectService;
@@ -22,24 +23,29 @@ public class ProjectController {
         this.projectService = projectService;
     }
 
-    @PostMapping("/project/create")
+    @PostMapping("/project/create") //hotovo
     public ProjectDto createNewProject(@RequestBody ProjectDto projectDto) {
         return projectService.createNewProject(projectDto);
     }
 
-    @GetMapping("/project/get/{id}")
+    @GetMapping("/project/get/{id}") //hotovo
     public ProjectDto getProject(@PathVariable int id) {
         return projectService.getProjectById(id);
     }
 
-    @GetMapping("/project")
+    @GetMapping("/project") //testovaci vrati list
     public List<ProjectEntity> getAllProjects() {
         return projectsDB;
     }
 
-    @PostMapping("/project/update/{id}")
-    public ProjectDto updateProject(@PathVariable int id) {
-        return projectService.updateProject(id);
+    @PostMapping("/project/update/{id}") //hotovo
+    public ProjectDto updateProject(@PathVariable int id, @RequestBody ProjectDto projectDto) {
+        return projectService.updateProject(id, projectDto);
+    }
+
+    @DeleteMapping("/project/delete/{id}") //hotovo
+    public void deleteProject(@PathVariable int id) {
+        projectService.deleteProject(id);
     }
 
     @GetMapping("/")

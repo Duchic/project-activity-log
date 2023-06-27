@@ -57,9 +57,10 @@
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate</artifactId>
-
+            <artifactId>hibernate-core</artifactId>
+            <version>6.2.5.Final</version>
         </dependency>
+
     </dependencies>
 
     <build>

@@ -1,11 +1,10 @@
 package com.example.projectactivitylog.controllers;
 
+import com.example.projectactivitylog.dto.PersonDto;
 import com.example.projectactivitylog.entities.PersonEntity;
-import com.example.projectactivitylog.entities.ProjectEntity;
-import com.example.projectactivitylog.util.Constants;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import com.example.projectactivitylog.servicess.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,24 +14,36 @@ public class PersonController {
             new PersonEntity(2, "Pavel", "Test"),
             new PersonEntity(3, "Dalsi", "Testovaci"));
 
-    @PostMapping("/person/create")
-    public String createNewPerson() {
-        return "person";
+    private final PersonService personService;
+
+    @Autowired
+    public PersonController(PersonService personService) {
+        this.personService = personService;
     }
 
-    @GetMapping("/person/get{id}")
-    public String getPerson(@PathVariable int id) {
-        return "person";
+    @PostMapping("/person/create") //hotovo
+    public PersonDto createNewPerson(@RequestBody PersonDto personDto) {
+        return personService.createNewPerson(personDto);
     }
 
-    @GetMapping("/person")
+    @GetMapping("/person/get{id}") //hotovo
+    public PersonDto getPerson(@PathVariable int id) {
+        return personService.getPersonById(id);
+    }
+
+    @GetMapping("/person") //testovaci
     public List<PersonEntity> getAllPerson() {
         return personDB;
     }
 
     @PostMapping("/person/update/{id}")
-    public String updatePerson(@PathVariable int id) {
-        return "person";
+    public PersonDto updatePerson(@PathVariable int id, @RequestBody PersonDto personDto) {
+        return personService.updatePerson(id, personDto);
+    }
+
+    @DeleteMapping("/person/delete/{id}")
+    public void deletePerson(@PathVariable int id) {
+        personService.deletePerson(id);
     }
 
     @GetMapping("/")

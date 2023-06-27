@@ -31,18 +31,25 @@ public class ProjectService {
 
     public ProjectDto createNewProject(ProjectDto projectDto) {
         ProjectEntity projectEntity = new ProjectEntity();
-        projectEntity.setName(projectDto.getName()); //dodelat
+        projectEntity.setName(projectDto.getName());
         projectEntity.setDescription(projectDto.getDescription());
-        projectEntity.setStatus(projectEntity.getStatus());
+        projectEntity.setStatus(projectDto.getStatus());
         projectRepository.save(projectEntity);
         projectDto.setId(projectEntity.getId());
         return projectDto;
     }
 
-    public ProjectDto updateProject(int id) {
+    public ProjectDto updateProject(int id, ProjectDto projectDto) {
         ProjectEntity projectEntity = new ProjectEntity();
-        //dodelat
+        projectEntity.setName(projectDto.getName());
+        projectEntity.setDescription(projectDto.getDescription());
+        projectEntity.setStatus(projectDto.getStatus());
+        projectRepository.save(projectEntity);
+        return projectDto; //musim tady nasetovat i id?
+    }
 
-        return null;
+    public void deleteProject(int id) {
+        projectRepository.deleteById(id);
+
     }
 }
