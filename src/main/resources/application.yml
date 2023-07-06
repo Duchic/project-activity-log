@@ -4,7 +4,7 @@ server:
 
 spring:
   profiles:
-    active: dev
+    active: prod
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/logger
