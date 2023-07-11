@@ -27,12 +27,12 @@ public class ProjectController {
     public ProjectDto createNewProject(@RequestBody ProjectDto projectDto) {
         return projectService.createNewProject(projectDto);
     }
-
+    @CrossOrigin
     @GetMapping("/project/get/{id}") //hotovo
     public ProjectDto getProject(@PathVariable int id) {
         return projectService.getProjectById(id);
     }
-
+    @CrossOrigin
     @GetMapping("/project") //testovaci vrati list
     public List<ProjectEntity> getAllProjects() {
         return projectsDB;
